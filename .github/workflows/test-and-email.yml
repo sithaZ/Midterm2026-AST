@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+      - exercise1-blog-platform-api
 jobs:
   test:
     runs-on: ubuntu-latest
