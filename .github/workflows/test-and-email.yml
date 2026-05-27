@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: GitHub Actions Test Result - ${{ job.status }}
           to: ${{ github.event.pusher.email }}, srengty@gmail.com
-          from: Blog Platform API CI
+          from:  huothsitha@gmail.com
           body: |
             Repository: ${{ github.repository }}
             Branch: main
