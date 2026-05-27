@@ -1,0 +1,43 @@
+name: Run Tests and Send Email
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run E2E Tests
+        run: npm run test:e2e
+
+      - name: Send Email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: GitHub Actions Test Result - ${{ job.status }}
+          to: ${{ github.event.pusher.email }}, srengty@gmail.com
+          from: Blog Platform API CI
+          body: |
+            Repository: ${{ github.repository }}
+            Branch: main
+            Committer: ${{ github.event.pusher.name }}
+            Commit SHA: ${{ github.sha }}
+            Test Status: ${{ job.status }}
