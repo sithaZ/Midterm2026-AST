@@ -1,5 +1,10 @@
 # Midterm 2026 - AST
 
+## Student Name and ID
+Name: Huoth Sitha
+
+
+ID: P20230039
 ## Student Project
 Blog Platform System with Backend API and Frontend UI.
 
